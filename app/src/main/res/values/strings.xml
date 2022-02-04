@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">ProyectoFinal</string>
+    <string name="app_name">TAP TAP TAP</string>
+    <string name="Welcome_text_view">Bienvenido a TAP TAP TAP</string>
 </resources>
