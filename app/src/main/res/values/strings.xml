@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">TAP TAP TAP</string>
     <string name="Welcome_text_view">Bienvenido a TAP TAP TAP</string>
+    <string name="Email_text">Correo electronico</string>
+    <string name="Password_text">Contraseña</string>
+    <string name="Rep_password_text">Repita la contraseña</string>
+    <string name="Register_button">Registrar</string>
+    <string name="name_player">Nombre del jugador</string>
 </resources>
