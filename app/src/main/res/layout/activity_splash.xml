@@ -7,7 +7,7 @@
     tools:context=".SplashActivity">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/logo_splash_image_view"
         android:layout_width="400dp"
         android:layout_height="400dp"
         android:layout_marginBottom="112dp"
@@ -29,5 +29,5 @@
         android:text="@string/Welcome_text_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/logo_splash_image_view" />
 </androidx.constraintlayout.widget.ConstraintLayout>
