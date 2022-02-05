@@ -21,6 +21,7 @@
 
     <TextView
         android:id="@+id/Welcome_text_view"
+        style="@style/TextViewTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="171dp"
