@@ -26,7 +26,7 @@ class RegisterActivity : AppCompatActivity() {
                 if(email.isNotEmpty() && namePlayer.isNotEmpty() && password.isNotEmpty() && repPassword.isNotEmpty()){
                     if (email.trim { it <= ' ' }.matches(emailPattern.toRegex())) {
                         if(password == repPassword){
-                            val intent = Intent(this@RegisterActivity, MainActivity::class.java)
+                            val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
                             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                             intent.putExtra("email", email)
                             intent.putExtra("nombre", namePlayer)
