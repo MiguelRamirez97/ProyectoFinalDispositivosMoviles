@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
 
         with(mainBinding) {
             namePlayerTextView.text = getString(R.string.info, namePlayerReceivedMain)
-
+            emailTextView.text = emailReceivedMain
         }
 
     }
