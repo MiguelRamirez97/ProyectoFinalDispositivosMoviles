@@ -25,7 +25,7 @@ class LoginActivity : AppCompatActivity() {
         if (credentials != null) {
             emailReceivedLogin = credentials.getString("email")
             passwordReceivedLogin = credentials.getString("password")
-            namePlayerReceivedLogin = credentials.getString("nombre")
+            namePlayerReceivedLogin = credentials.getString("name")
         }
 
         loginBinding.registerTextView.setOnClickListener {

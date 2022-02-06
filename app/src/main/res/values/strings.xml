@@ -8,5 +8,7 @@
     <string name="name_player">Nombre del jugador</string>
     <string name="todo">TODO</string>
     <string name="sing_in">Iniciar sesión</string>
+    <string name="info"><u><b>Bienvenido %s</b></u></string>
     <string name="register"><u><b>!!Registrate¡¡</b></u></string>
+    <string name="sing_out">Cerrar sesión</string>
 </resources>
