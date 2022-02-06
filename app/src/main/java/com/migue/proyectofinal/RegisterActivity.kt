@@ -26,12 +26,15 @@ class RegisterActivity : AppCompatActivity() {
                 if(email.isNotEmpty() && namePlayer.isNotEmpty() && password.isNotEmpty() && repPassword.isNotEmpty()){
                     if (email.trim { it <= ' ' }.matches(emailPattern.toRegex())) {
                         if(password == repPassword){
-                            val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
-                            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                            intent.putExtra("email", email)
-                            intent.putExtra("nombre", namePlayer)
-                            intent.putExtra("password", password)
-                            startActivity(intent)
+                            if(password.length > 5){
+                                val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
+                                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                intent.putExtra("email", email)
+                                intent.putExtra("nombre", namePlayer)
+                                intent.putExtra("password", password)
+                                startActivity(intent)
+                            }else
+                                Toast.makeText(applicationContext, "La contraseña debe contener al menos 6 caracteres", Toast.LENGTH_SHORT).show()
                         }else
                             Toast.makeText(applicationContext, "Las contraseñas deben coincidir", Toast.LENGTH_SHORT).show()
                     }else
