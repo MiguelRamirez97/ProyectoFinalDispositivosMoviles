@@ -30,7 +30,7 @@ class RegisterActivity : AppCompatActivity() {
                                 val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
                                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                                 intent.putExtra("email", email)
-                                intent.putExtra("nombre", namePlayer)
+                                intent.putExtra("name", namePlayer)
                                 intent.putExtra("password", password)
                                 startActivity(intent)
                             }else
