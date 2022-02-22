@@ -1,10 +1,11 @@
-package com.migue.proyectofinal
+package com.migue.proyectofinal.ui.resgister
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.migue.proyectofinal.databinding.ActivityRegisterBinding
+import com.migue.proyectofinal.ui.login.LoginActivity
 
 class RegisterActivity : AppCompatActivity() {
 

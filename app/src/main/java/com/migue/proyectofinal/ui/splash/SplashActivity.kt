@@ -1,9 +1,10 @@
-package com.migue.proyectofinal
+package com.migue.proyectofinal.ui.splash
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.migue.proyectofinal.databinding.ActivitySplashBinding
+import com.migue.proyectofinal.ui.login.LoginActivity
 import java.util.*
 import kotlin.concurrent.timerTask
 
