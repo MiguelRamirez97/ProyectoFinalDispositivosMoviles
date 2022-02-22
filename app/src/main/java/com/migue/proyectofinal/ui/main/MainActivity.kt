@@ -8,6 +8,8 @@ import android.view.MenuItem
 import com.migue.proyectofinal.R
 import com.migue.proyectofinal.databinding.ActivityMainBinding
 import com.migue.proyectofinal.ui.login.LoginActivity
+import androidx.navigation.fragment.navArgs
+import androidx.navigation.navArgs
 
 class MainActivity : AppCompatActivity() {
 
