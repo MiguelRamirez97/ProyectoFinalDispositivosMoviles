@@ -9,7 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.migue.proyectofinal.databinding.FragmentLoginBinding
-import com.migue.proyectofinal.ui.models.Player
+//import com.migue.proyectofinal.ui.models.Player
 
 class LoginFragment : Fragment() {
 
@@ -22,7 +22,7 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         loginBinding = FragmentLoginBinding.inflate(inflater, container, false)
-        viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
+        viewModel = ViewModelProvider(this)[LoginViewModel::class.java]
         return loginBinding.root
     }
 
@@ -39,12 +39,12 @@ class LoginFragment : Fragment() {
                 val email = emailEditText.text.toString()
                 val password = passwordEditTextLogin.text.toString()
 
-                val player = Player(
-                    namePlayer = "",
-                    emailPlayer = email,
-                    password = "",
-                    bestScore = ""
-                )
+//                val player = Player(
+//                    namePlayer = "",
+//                    emailPlayer = email,
+//                    password = "",
+//                    bestScore = ""
+//                )
 
                 if (email.trim { it <= ' ' }.matches(emailPattern.toRegex())) {
                     if (email.isNotEmpty()) {//if (email == emailReceivedLogin && email.isNotEmpty()) {
@@ -72,6 +72,4 @@ class LoginFragment : Fragment() {
             }
         }
     }
-
-
 }

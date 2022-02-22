@@ -21,7 +21,11 @@
         android:id="@+id/startingSelectionFragment"
         android:name="com.migue.proyectofinal.ui.startingselection.StartingSelectionFragment"
         android:label="fragment_starting_selection"
-        tools:layout="@layout/fragment_starting_selection" />
+        tools:layout="@layout/fragment_starting_selection" >
+        <action
+            android:id="@+id/action_startingSelectionFragment_to_startingGroupFragment"
+            app:destination="@id/startingGroupFragment" />
+    </fragment>
     <fragment
         android:id="@+id/registerFragment"
         android:name="com.migue.proyectofinal.ui.resgister.RegisterFragment"
@@ -31,4 +35,9 @@
             android:id="@+id/action_registerFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/startingGroupFragment"
+        android:name="com.migue.proyectofinal.ui.startinggroup.StartingGroupFragment"
+        android:label="fragment_starting_group"
+        tools:layout="@layout/fragment_starting_group" />
 </navigation>

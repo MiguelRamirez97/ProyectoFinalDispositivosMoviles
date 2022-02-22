@@ -11,4 +11,7 @@
     <string name="info"><u><b>Bienvenido %s</b></u></string>
     <string name="register"><u><b>!!Registrate¡¡</b></u></string>
     <string name="sing_out">Cerrar sesión</string>
+    <string name="quick_game_text_button">Partida rapida</string>
+    <string name="group_text_button">Grupo</string>
+    <string name="local_game_text_button">Partida local</string>
 </resources>
