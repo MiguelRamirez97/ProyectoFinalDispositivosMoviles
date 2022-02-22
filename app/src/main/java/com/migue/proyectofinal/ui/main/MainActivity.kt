@@ -1,11 +1,13 @@
-package com.migue.proyectofinal
+package com.migue.proyectofinal.ui.main
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import com.migue.proyectofinal.R
 import com.migue.proyectofinal.databinding.ActivityMainBinding
+import com.migue.proyectofinal.ui.login.LoginActivity
 
 class MainActivity : AppCompatActivity() {
 

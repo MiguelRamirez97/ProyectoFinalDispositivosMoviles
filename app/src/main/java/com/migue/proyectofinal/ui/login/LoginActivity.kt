@@ -1,9 +1,9 @@
-package com.migue.proyectofinal
+package com.migue.proyectofinal.ui.login
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
+import com.migue.proyectofinal.ui.resgister.RegisterActivity
 import com.migue.proyectofinal.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
