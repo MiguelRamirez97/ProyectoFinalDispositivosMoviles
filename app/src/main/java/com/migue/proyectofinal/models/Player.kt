@@ -1,4 +1,4 @@
-package com.migue.proyectofinal.ui.models
+package com.migue.proyectofinal.models
 
 import java.io.Serializable
 

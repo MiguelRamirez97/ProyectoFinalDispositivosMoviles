@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_startingSelectionFragment_to_startingGroupFragment"
             app:destination="@id/startingGroupFragment" />
+        <argument
+            android:name="player"
+            app:argType="com.migue.proyectofinal.models.Player" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
