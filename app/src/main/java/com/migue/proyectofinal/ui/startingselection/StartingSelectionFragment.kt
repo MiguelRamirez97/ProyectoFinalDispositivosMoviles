@@ -36,6 +36,12 @@ class StartingSelectionFragment : Fragment() {
                     StartingSelectionFragmentDirections.actionStartingSelectionFragmentToStartingGroupFragment()
                 )
             }
+
+            localGameButton.setOnClickListener {
+                findNavController().navigate(
+                    StartingSelectionFragmentDirections.actionStartingSelectionFragmentToNamePlayerTwoFragment()
+                )
+            }
         }
     }
 }
