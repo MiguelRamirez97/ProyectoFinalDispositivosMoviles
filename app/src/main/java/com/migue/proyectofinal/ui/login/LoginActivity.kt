@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.migue.proyectofinal.databinding.ActivityLoginBinding
+import com.migue.proyectofinal.ui.bottom.BottomActivity
 import com.migue.proyectofinal.ui.main.MainActivity
 import com.migue.proyectofinal.ui.resgister.RegisterActivity
 
@@ -35,7 +36,7 @@ class LoginActivity : AppCompatActivity() {
                 if (email.trim { it <= ' ' }.matches(emailPattern.toRegex())) {
                     if (email.isNotEmpty()) {//if (email == emailReceivedLogin && email.isNotEmpty()) {
                         if(password.isNotEmpty()) {//if(password == passwordReceivedLogin && password.isNotEmpty()) {
-                            val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                            val intent = Intent(this@LoginActivity, BottomActivity::class.java)
                             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                             startActivity(intent)
                         } else {
