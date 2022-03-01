@@ -1,17 +1,13 @@
 package com.migue.proyectofinal.ui.main
 
-import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.AttributeSet
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
-import androidx.navigation.findNavController
 import com.migue.proyectofinal.R
 import com.migue.proyectofinal.databinding.ActivityMainBinding
-import com.migue.proyectofinal.ui.login.LoginFragment
+import com.migue.proyectofinal.ui.login.LoginActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -36,7 +32,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun goToLoginActivity() {
-        val intent = Intent(this, LoginFragment::class.java)
+        val intent = Intent(this, LoginActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
         startActivity(intent)
     }

@@ -3,20 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_mobile"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/startingSelectionFragment">
 
-    <fragment
-        android:id="@+id/loginFragment"
-        android:name="com.migue.proyectofinal.ui.login.LoginFragment"
-        android:label="LoginFragment"
-        tools:layout="@layout/fragment_login">
-        <action
-            android:id="@+id/action_loginFragment_to_startingSelectionFragment"
-            app:destination="@id/startingSelectionFragment" />
-        <action
-            android:id="@+id/action_loginFragment_to_registerFragment"
-            app:destination="@id/registerFragment" />
-    </fragment>
     <fragment
         android:id="@+id/startingSelectionFragment"
         android:name="com.migue.proyectofinal.ui.startingselection.StartingSelectionFragment"
@@ -31,15 +19,6 @@
         <action
             android:id="@+id/action_startingSelectionFragment_to_namePlayerTwoFragment"
             app:destination="@id/namePlayerTwoFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/registerFragment"
-        android:name="com.migue.proyectofinal.ui.resgister.RegisterFragment"
-        android:label="fragment_register"
-        tools:layout="@layout/fragment_register" >
-        <action
-            android:id="@+id/action_registerFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/startingGroupFragment"
