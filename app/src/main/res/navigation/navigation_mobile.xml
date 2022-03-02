@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/startingSelectionFragment"
         android:name="com.migue.proyectofinal.ui.startingselection.StartingSelectionFragment"
-        android:label="fragment_starting_selection"
+        android:label="@string/title_play"
         tools:layout="@layout/fragment_starting_selection" >
         <action
             android:id="@+id/action_startingSelectionFragment_to_startingGroupFragment"
@@ -39,4 +39,14 @@
         android:name="com.migue.proyectofinal.ui.localgame.LocalGameFragment"
         android:label="fragment_local_games"
         tools:layout="@layout/fragment_local_games" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.migue.proyectofinal.ui.profile.ProfileFragment"
+        android:label="@string/title_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/scoresFragment"
+        android:name="com.migue.proyectofinal.ui.scores.ScoresFragment"
+        android:label="@string/title_score"
+        tools:layout="@layout/fragment_scores" />
 </navigation>

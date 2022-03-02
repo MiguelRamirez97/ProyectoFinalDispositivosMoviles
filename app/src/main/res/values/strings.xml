@@ -21,8 +21,7 @@
     <string name="instruction_player_two">Ingrese el nombre del segundo jugador</string>
     <string name="player_two_name">Jugador 2</string>
     <string name="accept_button">Aceptar</string>
-    <string name="title_activity_bottom">BottomActivity</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_play">Jugar</string>
+    <string name="title_score">Puntajes</string>
+    <string name="title_profile">Perfil</string>
 </resources>

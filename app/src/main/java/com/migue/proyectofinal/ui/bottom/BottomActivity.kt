@@ -1,6 +1,9 @@
 package com.migue.proyectofinal.ui.bottom
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -9,6 +12,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.migue.proyectofinal.R
 import com.migue.proyectofinal.databinding.ActivityBottomBinding
+import com.migue.proyectofinal.ui.login.LoginActivity
 
 class BottomActivity : AppCompatActivity() {
 
@@ -27,10 +31,11 @@ class BottomActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications
+                R.id.startingSelectionFragment, R.id.scoresFragment, R.id.profileFragment
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }
+
 }

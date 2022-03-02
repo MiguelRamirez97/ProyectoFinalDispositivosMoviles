@@ -3,23 +3,21 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/INTEL/Documents/ProyectoFinalDispositivosMoviles/app/src/main/res/layout/activity_bottom.xml" value="0.13333333333333333" />
         <entry key="..\:/Users/INTEL/Documents/ProyectoFinalDispositivosMoviles/app/src/main/res/layout/activity_login.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/INTEL/Documents/ProyectoFinalDispositivosMoviles/app/src/main/res/layout/activity_main.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/INTEL/Documents/ProyectoFinalDispositivosMoviles/app/src/main/res/layout/activity_register.xml" value="0.22" />
         <entry key="..\:/Users/INTEL/Documents/ProyectoFinalDispositivosMoviles/app/src/main/res/layout/activity_splash.xml" value="0.1796875" />
+        <entry key="..\:/Users/INTEL/Documents/ProyectoFinalDispositivosMoviles/app/src/main/res/layout/fragment_dashboard.xml" value="0.1" />
+        <entry key="..\:/Users/INTEL/Documents/ProyectoFinalDispositivosMoviles/app/src/main/res/layout/fragment_home.xml" value="0.1796875" />
+        <entry key="..\:/Users/INTEL/Documents/ProyectoFinalDispositivosMoviles/app/src/main/res/layout/fragment_profile.xml" value="0.22" />
+        <entry key="..\:/Users/INTEL/Documents/ProyectoFinalDispositivosMoviles/app/src/main/res/layout/fragment_scores.xml" value="0.22" />
+        <entry key="..\:/Users/INTEL/Documents/ProyectoFinalDispositivosMoviles/app/src/main/res/menu/bottom_nav_menu.xml" value="0.13978494623655913" />
         <entry key="..\:/Users/INTEL/Documents/ProyectoFinalDispositivosMoviles/app/src/main/res/menu/menu_overflow.xml" value="0.22" />
+        <entry key="..\:/Users/INTEL/Documents/ProyectoFinalDispositivosMoviles/app/src/main/res/menu/overflow_menu.xml" value="0.1796875" />
         <entry key="..\:/Users/Migue/AndroidStudioProjects/ProyectoFinal/app/src/main/res/layout/activity_main.xml" value="0.3729166666666667" />
         <entry key="..\:/Users/Migue/AndroidStudioProjects/ProyectoFinal/app/src/main/res/layout/activity_register.xml" value="0.28854166666666664" />
         <entry key="..\:/Users/Migue/AndroidStudioProjects/ProyectoFinal/app/src/main/res/layout/activity_splash.xml" value="0.3729166666666667" />
-        <entry key="..\:/Users/Migue/AndroidStudioProjects/ProyectoFinalDispositivosMoviles/app/src/main/res/layout/activity_bottom.xml" value="0.2671875" />
-        <entry key="..\:/Users/Migue/AndroidStudioProjects/ProyectoFinalDispositivosMoviles/app/src/main/res/layout/activity_login.xml" value="0.2671875" />
-        <entry key="..\:/Users/Migue/AndroidStudioProjects/ProyectoFinalDispositivosMoviles/app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="..\:/Users/Migue/AndroidStudioProjects/ProyectoFinalDispositivosMoviles/app/src/main/res/layout/fragment_home.xml" value="0.28854166666666664" />
-        <entry key="..\:/Users/Migue/AndroidStudioProjects/ProyectoFinalDispositivosMoviles/app/src/main/res/layout/fragment_local_games.xml" value="0.25" />
-        <entry key="..\:/Users/Migue/AndroidStudioProjects/ProyectoFinalDispositivosMoviles/app/src/main/res/layout/fragment_login.xml" value="0.15729166666666666" />
-        <entry key="..\:/Users/Migue/AndroidStudioProjects/ProyectoFinalDispositivosMoviles/app/src/main/res/layout/fragment_name_player_two.xml" value="0.21" />
-        <entry key="..\:/Users/Migue/AndroidStudioProjects/ProyectoFinalDispositivosMoviles/app/src/main/res/menu/bottom_nav_menu.xml" value="0.2671875" />
-        <entry key="..\:/Users/Migue/AndroidStudioProjects/ProyectoFinalDispositivosMoviles/app/src/main/res/menu/menu_overflow.xml" value="0.22447916666666667" />
       </map>
     </option>
   </component>
