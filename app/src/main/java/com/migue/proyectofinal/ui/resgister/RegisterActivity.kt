@@ -28,6 +28,8 @@ class RegisterActivity : AppCompatActivity() {
                 val password = passwordEditText.text.toString()
                 val repPassword = repPasswordEditText.text.toString()
 
+                //registerViewModel.validateFields(emailEditText.text.toString(), namePLayerEditText.text.toString(),passwordEditText.text.toString(), repPasswordEditText.text.toString())
+
                 if(email.isNotEmpty() && namePlayer.isNotEmpty() && password.isNotEmpty() && repPassword.isNotEmpty()){
                     if (email.trim { it <= ' ' }.matches(emailPattern.toRegex())) {
                         if(password == repPassword){
