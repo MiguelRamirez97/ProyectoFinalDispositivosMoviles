@@ -14,5 +14,4 @@ data class Player(
     @ColumnInfo(name = "password") val password: String
 ) : Serializable {
     constructor() : this(NULL,"","","")
-
 }

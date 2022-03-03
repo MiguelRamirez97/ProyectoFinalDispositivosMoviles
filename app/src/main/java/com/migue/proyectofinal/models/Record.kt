@@ -4,6 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.io.Serializable
+import java.sql.Types.NULL
 
 @Entity(tableName = "table_records")
 data class Record(
@@ -12,4 +13,6 @@ data class Record(
     @ColumnInfo(name = "player")val player: String = "",
     @ColumnInfo(name = "email")val email: String = "",
     @ColumnInfo(name = "score")val score: Int = 0
-) : Serializable
+) :  Serializable{
+    constructor() : this(NULL,NULL,"", "", NULL)
+}
