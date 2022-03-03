@@ -4,18 +4,22 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import com.migue.proyectofinal.databinding.ActivityRegisterBinding
 import com.migue.proyectofinal.ui.login.LoginActivity
 
 class RegisterActivity : AppCompatActivity() {
 
     private lateinit var registerBinding: ActivityRegisterBinding
+    private lateinit var registerViewModel: RegisterViewModel
     var emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         registerBinding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(registerBinding.root)
+
+        registerViewModel = ViewModelProvider(this).get(RegisterViewModel::class.java)
 
         with(registerBinding){
             registerButton.setOnClickListener {
@@ -28,11 +32,9 @@ class RegisterActivity : AppCompatActivity() {
                     if (email.trim { it <= ' ' }.matches(emailPattern.toRegex())) {
                         if(password == repPassword){
                             if(password.length > 5){
+                                //guardar en base de datos
                                 val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
                                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                                intent.putExtra("email", email)
-                                intent.putExtra("name", namePlayer)
-                                intent.putExtra("password", password)
                                 startActivity(intent)
                             }else
                                 Toast.makeText(applicationContext, "La contraseña debe contener al menos 6 caracteres", Toast.LENGTH_SHORT).show()

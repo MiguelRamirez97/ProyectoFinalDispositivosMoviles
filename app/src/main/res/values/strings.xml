@@ -11,4 +11,19 @@
     <string name="info"><u><b>Bienvenido %s</b></u></string>
     <string name="register"><u><b>!!Registrate¡¡</b></u></string>
     <string name="sing_out">Cerrar sesión</string>
+    <string name="quick_game_text_button">Partida rapida</string>
+    <string name="group_game_text_button">Partida de grupo</string>
+    <string name="local_game_text_button">Partida local</string>
+    <string name="button">Button</string>
+    <string name="create_room_text_button">Crear sala</string>
+    <string name="enter_the_room_text_button">Entrar a una sala</string>
+    <string name="code_sala_text">Código de la sala</string>
+    <string name="instruction_player_two">Ingrese el nombre del segundo jugador</string>
+    <string name="player_two_name">Jugador 2</string>
+    <string name="accept_button">Aceptar</string>
+    <string name="title_play">Jugar</string>
+    <string name="title_score">Puntajes</string>
+    <string name="title_profile">Perfil</string>
+    <string name="text_view_score">Puntuación</string>
+    <string name="button_online_game">Tap Tap Tap</string>
 </resources>
