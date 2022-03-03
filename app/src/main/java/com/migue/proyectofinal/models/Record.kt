@@ -1,3 +1,9 @@
 package com.migue.proyectofinal.models
 
-data class Record()
+import java.io.Serializable
+
+data class Record(
+    val player: String,
+    val email: String,
+    val score: String
+) : Serializable
