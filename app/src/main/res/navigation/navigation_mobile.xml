@@ -19,12 +19,19 @@
         <action
             android:id="@+id/action_startingSelectionFragment_to_namePlayerTwoFragment"
             app:destination="@id/namePlayerTwoFragment" />
+        <action
+            android:id="@+id/action_startingSelectionFragment_to_onlineGameFragment"
+            app:destination="@id/onlineGameFragment" />
     </fragment>
     <fragment
         android:id="@+id/startingGroupFragment"
         android:name="com.migue.proyectofinal.ui.startinggroup.StartingGroupFragment"
         android:label="fragment_starting_group"
-        tools:layout="@layout/fragment_starting_group" />
+        tools:layout="@layout/fragment_starting_group" >
+        <action
+            android:id="@+id/action_startingGroupFragment_to_waitingRoomFragment"
+            app:destination="@id/waitingRoomFragment" />
+    </fragment>
     <fragment
         android:id="@+id/namePlayerTwoFragment"
         android:name="com.migue.proyectofinal.ui.nameplayertwo.NamePlayerTwoFragment"
@@ -49,4 +56,23 @@
         android:name="com.migue.proyectofinal.ui.scores.ScoresFragment"
         android:label="@string/title_score"
         tools:layout="@layout/fragment_scores" />
+    <fragment
+        android:id="@+id/onlineGameFragment"
+        android:name="com.migue.proyectofinal.ui.onlinegame.OnlineGameFragment"
+        android:label="fragment_online_game"
+        tools:layout="@layout/fragment_online_game" />
+    <fragment
+        android:id="@+id/onlineGameFragment2"
+        android:name="com.migue.proyectofinal.ui.onlinegame.OnlineGameFragment"
+        android:label="fragment_online_game"
+        tools:layout="@layout/fragment_online_game" />
+    <fragment
+        android:id="@+id/waitingRoomFragment"
+        android:name="com.migue.proyectofinal.ui.waitingroom.WaitingRoomFragment"
+        android:label="fragment_waiting_room"
+        tools:layout="@layout/fragment_waiting_room" >
+        <action
+            android:id="@+id/action_waitingRoomFragment_to_onlineGameFragment2"
+            app:destination="@id/onlineGameFragment2" />
+    </fragment>
 </navigation>
