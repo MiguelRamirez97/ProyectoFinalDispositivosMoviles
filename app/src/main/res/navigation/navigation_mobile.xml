@@ -15,7 +15,7 @@
             app:destination="@id/startingGroupFragment" />
         <argument
             android:name="player"
-            app:argType="com.migue.proyectofinal.models.Player" />
+            app:argType="com.migue.proyectofinal.local.Player" />
         <action
             android:id="@+id/action_startingSelectionFragment_to_namePlayerTwoFragment"
             app:destination="@id/namePlayerTwoFragment" />

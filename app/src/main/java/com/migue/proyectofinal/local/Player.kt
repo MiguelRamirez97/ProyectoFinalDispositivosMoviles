@@ -8,10 +8,10 @@ import java.sql.Types.NULL
 
 @Entity(tableName = "table_players")
 data class Player(
-    @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "id") val id: Int,
-    @ColumnInfo(name = "name") val name: String,
-    @ColumnInfo(name = "email") val email: String,
-    @ColumnInfo(name = "password") val password: String
+    @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "id") var id: Int,
+    @ColumnInfo(name = "name") var name: String,
+    @ColumnInfo(name = "email") var email: String,
+    @ColumnInfo(name = "password") var password: String
 ) : Serializable {
     constructor() : this(NULL,"","","")
 }
