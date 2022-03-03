@@ -42,6 +42,12 @@ class StartingSelectionFragment : Fragment() {
                     StartingSelectionFragmentDirections.actionStartingSelectionFragmentToNamePlayerTwoFragment()
                 )
             }
+
+            quickGameButton.setOnClickListener {
+                findNavController().navigate(
+                    StartingSelectionFragmentDirections.actionStartingSelectionFragmentToOnlineGameFragment()
+                )
+            }
         }
     }
 }
