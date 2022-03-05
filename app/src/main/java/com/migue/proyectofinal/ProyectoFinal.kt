@@ -17,7 +17,8 @@ class ProyectoFinal : Application() {
             this,
             PlayerDatabase::class.java,
             "player_db"
-        ).build()
+        ).allowMainThreadQueries()
+            .build()
     }
 
 }

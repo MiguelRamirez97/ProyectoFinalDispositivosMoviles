@@ -18,4 +18,10 @@ class PlayerRepository {
         val playerDao : PlayerDao = ProyectoFinal.database.PlayerDao()
         playerDao.save(player)
     }
+
+    fun findPlayer(email: String,password: String) : Player{
+        val playerDao : PlayerDao = ProyectoFinal.database.PlayerDao()
+        val player = playerDao.findPlayer(email,password)
+        return player
+    }
 }

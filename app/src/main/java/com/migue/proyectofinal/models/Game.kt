@@ -6,18 +6,16 @@ import androidx.room.PrimaryKey
 import java.io.Serializable
 import java.sql.Types.NULL
 
-@Entity(tableName = "table_games")
+@Entity
 data class Game(
-    @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "id") var id: Int,
-    @ColumnInfo(name = "namePlayer1")var namePlayer1: String,
-    @ColumnInfo(name = "namePlayer2")var namePlayer2: String,
-    @ColumnInfo(name = "scorePlayer1")var scorePlayer1: Int,
-    @ColumnInfo(name = "scorePlayer2")var scorePlayer2: Int,
-    @ColumnInfo(name = "idPlayer1")var idPlayer1: Int,
-    @ColumnInfo(name = "idPlayer2")var idPlayer2: Int,
-    @ColumnInfo(name = "winner")var winner: String,
-    @ColumnInfo(name = "typeGame")var typeGame: String
-) : Serializable{
-    constructor() : this(NULL,"","",0,0,NULL,NULL,"","")
-}
+    @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "id") var id: Int = NULL,
+    @ColumnInfo(name = "namePlayer1")var namePlayer1: String = "",
+    @ColumnInfo(name = "namePlayer2")var namePlayer2: String = "",
+    @ColumnInfo(name = "scorePlayer1")var scorePlayer1: Int = 0,
+    @ColumnInfo(name = "scorePlayer2")var scorePlayer2: Int = 0,
+    @ColumnInfo(name = "idPlayer1")var idPlayer1: Int = 0,
+    @ColumnInfo(name = "idPlayer2")var idPlayer2: Int = 0,
+    @ColumnInfo(name = "winner")var winner: String = "",
+    @ColumnInfo(name = "typeGame")var typeGame: String = ""
+) : Serializable
 

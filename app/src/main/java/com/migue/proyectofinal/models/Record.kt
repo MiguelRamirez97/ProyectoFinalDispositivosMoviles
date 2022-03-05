@@ -6,13 +6,11 @@ import androidx.room.PrimaryKey
 import java.io.Serializable
 import java.sql.Types.NULL
 
-@Entity(tableName = "table_records")
+@Entity
 data class Record(
-    @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "id") val id: Int,
+    @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "id") val id: Int = NULL,
     @ColumnInfo(name = "idPlayer")val idPlayer: Int = 0,
     @ColumnInfo(name = "player")val player: String = "",
     @ColumnInfo(name = "email")val email: String = "",
     @ColumnInfo(name = "score")val score: Int = 0
-) :  Serializable{
-    constructor() : this(NULL,NULL,"", "", NULL)
-}
+) :  Serializable

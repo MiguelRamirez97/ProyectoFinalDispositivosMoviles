@@ -38,23 +38,23 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
-    private fun onDataValidatedSubscribe(result: Boolean?) {
+    private fun onDataValidatedSubscribe(result: Boolean) {
         with(registerBinding) {
             val email = emailEditText.text.toString()
             val namePlayer = namePLayerEditText.text.toString()
             val password = passwordEditText.text.toString()
             val repPassword = repPasswordEditText.text.toString()
 
+            //guardar en base de datos
             registerViewModel.savePlayer(email, namePlayer, password)
 
-            //guardar en base de datos
             val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
         }
     }
 
-    private fun onMsgDoneSubscribe(msg: String?) {
+    private fun onMsgDoneSubscribe(msg: String) {
         Toast.makeText(applicationContext, msg, Toast.LENGTH_SHORT).show()
     }
 }
