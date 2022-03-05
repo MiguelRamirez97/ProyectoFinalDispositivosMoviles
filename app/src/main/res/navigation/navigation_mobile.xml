@@ -75,4 +75,9 @@
             android:id="@+id/action_waitingRoomFragment_to_onlineGameFragment2"
             app:destination="@id/onlineGameFragment2" />
     </fragment>
+    <fragment
+        android:id="@+id/recordsFragment"
+        android:name="com.migue.proyectofinal.ui.records.RecordsFragment"
+        android:label="@string/title_records"
+        tools:layout="@layout/fragment_records" />
 </navigation>
