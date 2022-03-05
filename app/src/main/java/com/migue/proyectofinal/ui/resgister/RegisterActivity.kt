@@ -17,20 +17,21 @@ class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        registerViewModel.msgDone.observe(this, {result ->
-            onMsgDoneSubscribe(result)
-        })
-
-        registerViewModel.dataValidated.observe(this, {result ->
-            onDataValidatedSubscribe(result)
-        })
-
         registerBinding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(registerBinding.root)
 
         registerViewModel = ViewModelProvider(this).get(RegisterViewModel::class.java)
 
         with(registerBinding){
+
+            registerViewModel.msgDone.observe(this@RegisterActivity, {result ->
+                onMsgDoneSubscribe(result)
+            })
+
+            registerViewModel.dataValidated.observe(this@RegisterActivity, {result ->
+                onDataValidatedSubscribe(result)
+            })
+
             registerButton.setOnClickListener {
                 registerViewModel.validateFields(emailEditText.text.toString(), namePLayerEditText.text.toString(),passwordEditText.text.toString(), repPasswordEditText.text.toString())
             }

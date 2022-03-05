@@ -23,12 +23,12 @@ class LoginActivity : AppCompatActivity() {
 
         loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
 
-        with(loginBinding) {
+        loginBinding.registerTextView.setOnClickListener {
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
+        }
 
-            registerTextView.setOnClickListener{
-                val intent = Intent(this@LoginActivity, RegisterActivity::class.java)
-                startActivity(intent)
-            }
+        with(loginBinding) {
 
             singInButton.setOnClickListener {
                 val email = emailEditText.text.toString()
