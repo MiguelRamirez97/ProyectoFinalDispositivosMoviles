@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.migue.proyectofinal.databinding.ActivityLoginBinding
 import com.migue.proyectofinal.ui.bottom.BottomActivity
-import com.migue.proyectofinal.ui.main.MainActivity
 import com.migue.proyectofinal.ui.resgister.RegisterActivity
 
 class LoginActivity : AppCompatActivity() {
@@ -29,34 +28,31 @@ class LoginActivity : AppCompatActivity() {
         }
 
         with(loginBinding) {
-            singInButton.setOnClickListener {
-                val email = emailEditText.text.toString()
-                val password = passwordEditTextLogin.text.toString()
 
-                if (email.trim { it <= ' ' }.matches(emailPattern.toRegex())) {
-                    if (email.isNotEmpty()) {//if (email == emailReceivedLogin && email.isNotEmpty()) {
-                        if(password.isNotEmpty()) {//if(password == passwordReceivedLogin && password.isNotEmpty()) {
-                            val intent = Intent(this@LoginActivity, BottomActivity::class.java)
-                            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-                            startActivity(intent)
-                        } else {
-                            Toast.makeText(
-                                applicationContext,
-                                "La contraseña es incorrecta.",
-                                Toast.LENGTH_LONG
-                            ).show()
-                        }
-                    } else {
-                        Toast.makeText(
-                            applicationContext,
-                            "La cuenta no se encuentra registrada.",
-                            Toast.LENGTH_LONG
-                        ).show()
-                    }
-                } else {
-                    Toast.makeText(applicationContext, "Email invalido", Toast.LENGTH_SHORT).show()
-                }
+            loginViewModel.msgDone.observe(this@LoginActivity, { result ->
+                onMsgDondeSubscribe(result)
+            })
+
+            loginViewModel.dataValidated.observe(this@LoginActivity, { result ->
+                onDataValidatedSubscribe(result)
+            })
+
+            singInButton.setOnClickListener {
+                loginViewModel.validateLogin(
+                    emailEditText.text.toString(),
+                    passwordEditTextLogin.text.toString()
+                )
             }
         }
+    }
+
+    private fun onDataValidatedSubscribe(result: Boolean) {
+            val intent = Intent(this@LoginActivity, BottomActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(intent)
+    }
+
+    private fun onMsgDondeSubscribe(msg: String) {
+        Toast.makeText(applicationContext, msg, Toast.LENGTH_SHORT).show()
     }
 }
