@@ -26,7 +26,7 @@
     <fragment
         android:id="@+id/startingGroupFragment"
         android:name="com.migue.proyectofinal.ui.startinggroup.StartingGroupFragment"
-        android:label="fragment_starting_group"
+        android:label="@string/group_game_text_button"
         tools:layout="@layout/fragment_starting_group" >
         <action
             android:id="@+id/action_startingGroupFragment_to_waitingRoomFragment"
@@ -35,7 +35,7 @@
     <fragment
         android:id="@+id/namePlayerTwoFragment"
         android:name="com.migue.proyectofinal.ui.nameplayertwo.NamePlayerTwoFragment"
-        android:label="fragment_name_player_two"
+        android:label="@string/local_game_text_button"
         tools:layout="@layout/fragment_name_player_two" >
         <action
             android:id="@+id/action_namePlayerTwoFragment_to_localGameFragment"
@@ -44,7 +44,7 @@
     <fragment
         android:id="@+id/localGameFragment"
         android:name="com.migue.proyectofinal.ui.localgame.LocalGameFragment"
-        android:label="fragment_local_games"
+        android:label="@string/local_game_text_button"
         tools:layout="@layout/fragment_local_games" />
     <fragment
         android:id="@+id/profileFragment"
@@ -59,17 +59,17 @@
     <fragment
         android:id="@+id/onlineGameFragment"
         android:name="com.migue.proyectofinal.ui.onlinegame.OnlineGameFragment"
-        android:label="fragment_online_game"
+        android:label="@string/quick_game_text_button"
         tools:layout="@layout/fragment_online_game" />
     <fragment
         android:id="@+id/onlineGameFragment2"
         android:name="com.migue.proyectofinal.ui.onlinegame.OnlineGameFragment"
-        android:label="fragment_online_game"
+        android:label="@string/group_game_text_button"
         tools:layout="@layout/fragment_online_game" />
     <fragment
         android:id="@+id/waitingRoomFragment"
         android:name="com.migue.proyectofinal.ui.waitingroom.WaitingRoomFragment"
-        android:label="fragment_waiting_room"
+        android:label="@string/group_game_text_button"
         tools:layout="@layout/fragment_waiting_room" >
         <action
             android:id="@+id/action_waitingRoomFragment_to_onlineGameFragment2"

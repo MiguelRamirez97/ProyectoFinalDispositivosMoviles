@@ -25,6 +25,15 @@
     <string name="title_score">Puntajes</string>
     <string name="title_profile">Perfil</string>
     <string name="text_view_score">Puntuación</string>
-    <string name="button_online_game">Tap Tap Tap</string>
+    <string name="button_online_game">Golpea a: </string>
     <string name="title_records">Records</string>
+    <string name="button_play_game">Jugar</string>
+    <string name="text_player1">Player1</string>
+    <string name="text_view_player2">Player2</string>
+    <string name="text_view_player1">Player1</string>
+    <string name="text_view_code">123456</string>
+    <string name="text_view_info_record">En este fragmento se mostraran los records cuando ya se tenga un historial de records</string>
+    <string name="text_view_info_scores">En este fragmento se mostraran los puntajes una vez se tenga historial de partidas</string>
+    <string name="text_view_name">Nombre:</string>
+    <string name="text_view_email">Email:</string>
 </resources>
