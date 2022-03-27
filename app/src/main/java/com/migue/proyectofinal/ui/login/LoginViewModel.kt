@@ -34,13 +34,23 @@ class LoginViewModel : ViewModel() {
                             }
                         }
                 } else {
-                    msg.value = "La contraseña no puede estar vacia"
+                    msg.value = "La contraseña no puede estar vacia."
                 }
             } else {
-                msg.value = "El correo no puede estar vacio"
+                msg.value = "El correo no puede estar vacio."
             }
         } else {
-            msg.value = "Email invalido"
+            msg.value = "Email invalido."
+        }
+    }
+
+    fun recoveryPassword(email: String){
+        auth = Firebase.auth
+        if (email.isEmpty()){
+            msg.value = "Ingrese su correo en el campo email."
+        }else{
+            auth.sendPasswordResetEmail(email)
+            msg.value = "Revisa tu bandeja de entrada."
         }
     }
 }

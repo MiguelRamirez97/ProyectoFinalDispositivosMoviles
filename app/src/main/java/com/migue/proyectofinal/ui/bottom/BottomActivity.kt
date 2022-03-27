@@ -10,6 +10,9 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.migue.proyectofinal.R
 import com.migue.proyectofinal.databinding.ActivityBottomBinding
 import com.migue.proyectofinal.ui.login.LoginActivity
@@ -17,18 +20,18 @@ import com.migue.proyectofinal.ui.login.LoginActivity
 class BottomActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityBottomBinding
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityBottomBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        auth = Firebase.auth
 
         val navView: BottomNavigationView = binding.navView
 
         val navController = findNavController(R.id.nav_host_fragment_activity_bottom)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.startingSelectionFragment, R.id.recordsFragment, R.id.scoresFragment, R.id.profileFragment
@@ -45,7 +48,10 @@ class BottomActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
-            R.id.menu_sing_out -> goToLoginActivity()
+            R.id.menu_sing_out ->{
+                auth.signOut()
+                goToLoginActivity()
+            }
         }
         return super.onOptionsItemSelected(item)
     }
