@@ -36,4 +36,5 @@
     <string name="text_view_info_scores">En este fragmento se mostraran los puntajes una vez se tenga historial de partidas</string>
     <string name="text_view_name">Nombre:</string>
     <string name="text_view_email">Email:</string>
+    <string name="recoveryPassword"><u><b>Olvide mi contraseña</b></u></string>
 </resources>

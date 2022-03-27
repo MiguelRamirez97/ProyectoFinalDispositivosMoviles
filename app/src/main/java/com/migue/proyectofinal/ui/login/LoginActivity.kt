@@ -36,6 +36,10 @@ class LoginActivity : AppCompatActivity() {
                 onDataValidatedSubscribe()
             }
 
+            loginBinding.recoveryPasswordTextView.setOnClickListener {
+                loginViewModel.recoveryPassword(emailEditText.text.toString())
+            }
+
             singInButton.setOnClickListener {
                 loginViewModel.validateLogin(
                     emailEditText.text.toString(),
