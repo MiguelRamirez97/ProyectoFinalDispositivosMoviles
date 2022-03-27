@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.migue.proyectofinal.R
 import com.migue.proyectofinal.databinding.FragmentNamePlayerTwoBinding
 
 class NamePlayerTwoFragment : Fragment() {
@@ -20,7 +19,7 @@ class NamePlayerTwoFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         namePlayerTwoBinding = FragmentNamePlayerTwoBinding.inflate(inflater, container, false)
-        namePlayerTwoViewModel = ViewModelProvider(this).get(NamePlayerTwoViewModel::class.java)
+        namePlayerTwoViewModel = ViewModelProvider(this)[NamePlayerTwoViewModel::class.java]
         return namePlayerTwoBinding.root
     }
 

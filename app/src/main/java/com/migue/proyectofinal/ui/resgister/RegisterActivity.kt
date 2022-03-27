@@ -19,38 +19,33 @@ class RegisterActivity : AppCompatActivity() {
         registerBinding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(registerBinding.root)
 
-        registerViewModel = ViewModelProvider(this).get(RegisterViewModel::class.java)
+        registerViewModel = ViewModelProvider(this)[RegisterViewModel::class.java]
 
-        with(registerBinding){
+        with(registerBinding) {
 
-            registerViewModel.msgDone.observe(this@RegisterActivity, {result ->
+            registerViewModel.msgDone.observe(this@RegisterActivity) { result ->
                 onMsgDoneSubscribe(result)
-            })
+            }
 
-            registerViewModel.dataValidated.observe(this@RegisterActivity, {result ->
-                onDataValidatedSubscribe(result)
-            })
+            registerViewModel.dataValidated.observe(this@RegisterActivity) {
+                onDataValidatedSubscribe()
+            }
 
             registerButton.setOnClickListener {
-                registerViewModel.validateFields(emailEditText.text.toString(), namePLayerEditText.text.toString(),passwordEditText.text.toString(), repPasswordEditText.text.toString())
+                registerViewModel.validateFields(
+                    emailEditText.text.toString(),
+                    namePLayerEditText.text.toString(),
+                    passwordEditText.text.toString(),
+                    repPasswordEditText.text.toString()
+                )
             }
         }
     }
 
-    private fun onDataValidatedSubscribe(result: Boolean) {
-        with(registerBinding) {
-            val email = emailEditText.text.toString()
-            val namePlayer = namePLayerEditText.text.toString()
-            val password = passwordEditText.text.toString()
-            val repPassword = repPasswordEditText.text.toString()
-
-            //guardar en base de datos
-            registerViewModel.savePlayer(email, namePlayer, password)
-
-            val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            startActivity(intent)
-        }
+    private fun onDataValidatedSubscribe() {
+        val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(intent)
     }
 
     private fun onMsgDoneSubscribe(msg: String) {
