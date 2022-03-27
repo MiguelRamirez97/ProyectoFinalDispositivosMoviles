@@ -35,7 +35,7 @@ class RegisterViewModel : ViewModel() {
                                     dataValidate.value = true
                                 } else {
                                     Log.w("Register", "createUserWithEmail:failure", task.exception)
-                                    msg.value = task.toString()
+                                    msg.value = task.exception?.message.toString()
                                 }
                             }
                     }else
