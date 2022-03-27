@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "885792486055",
+    "project_id": "taptaptap-8eb3e",
+    "storage_bucket": "taptaptap-8eb3e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:885792486055:android:b8170d56abcb85e18d2182",
+        "android_client_info": {
+          "package_name": "com.migue.proyectofinal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "885792486055-ddr6f5nfbp3d0mndeudp384ssjq9bq6u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.migue.proyectofinal",
+            "certificate_hash": "9f6a7a6f211e6619075434f463fc4b19fa0e0c7d"
+          }
+        },
+        {
+          "client_id": "885792486055-ims0sn467n6obr69460br2alhc0jl200.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.migue.proyectofinal",
+            "certificate_hash": "8218690772782ea42bb8e52239ea36b908ff0153"
+          }
+        },
+        {
+          "client_id": "885792486055-m6m2b5o79diqvjoebckmlcq60g64dnm6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCD5jXVkpscPPiopZ4ckJX39BQcMbqt3Ko"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "885792486055-m6m2b5o79diqvjoebckmlcq60g64dnm6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
