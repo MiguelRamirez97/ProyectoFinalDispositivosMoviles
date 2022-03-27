@@ -1,25 +1,21 @@
 package com.migue.proyectofinal.ui.resgister
 
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import com.migue.proyectofinal.repository.PlayerRepository
 
 class RegisterViewModel : ViewModel() {
 
-    var emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
+    private var emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
     private val msg: MutableLiveData<String> = MutableLiveData()
     val msgDone: LiveData<String> =msg
-    private val playerRepository = PlayerRepository()
 
     private val dataValidate: MutableLiveData<Boolean> = MutableLiveData()
     val dataValidated: LiveData<Boolean> = dataValidate
-
     private lateinit var auth: FirebaseAuth
 
     fun validateFields(email: String, namePlayer: String, password: String, repPassword: String) {
@@ -29,7 +25,7 @@ class RegisterViewModel : ViewModel() {
                 if(password == repPassword){
                     if(password.length > 5){
                         auth.createUserWithEmailAndPassword(email, password)
-                            .addOnCompleteListener() { task ->
+                            .addOnCompleteListener { task ->
                                 if (task.isSuccessful) {
                                     Log.d("Register", "createUserWithEmail:success")
                                     dataValidate.value = true
@@ -46,9 +42,5 @@ class RegisterViewModel : ViewModel() {
                 msg.value = "Email invalido"
         }else
             msg.value = "Debe llenar todos los campos"
-    }
-
-    fun savePlayer(email: String, namePlayer: String, password: String) {
-        playerRepository.save(email, namePlayer, password)
     }
 }

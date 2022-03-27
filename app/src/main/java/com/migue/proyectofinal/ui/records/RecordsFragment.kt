@@ -10,10 +10,6 @@ import com.migue.proyectofinal.R
 
 class RecordsFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = RecordsFragment()
-    }
-
     private lateinit var viewModel: RecordsViewModel
 
     override fun onCreateView(
@@ -23,10 +19,8 @@ class RecordsFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_records, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(RecordsViewModel::class.java)
-        // TODO: Use the ViewModel
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel = ViewModelProvider(this)[RecordsViewModel::class.java]
     }
-
 }

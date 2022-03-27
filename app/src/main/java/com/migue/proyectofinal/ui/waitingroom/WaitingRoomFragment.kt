@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.migue.proyectofinal.R
 import com.migue.proyectofinal.databinding.FragmentWaitingRoomBinding
 
 class WaitingRoomFragment : Fragment() {
@@ -20,7 +19,7 @@ class WaitingRoomFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         waitingRoomBinding = FragmentWaitingRoomBinding.inflate(inflater, container, false)
-        waitingRoomViewModel = ViewModelProvider(this).get(WaitingRoomViewModel::class.java)
+        waitingRoomViewModel = ViewModelProvider(this)[WaitingRoomViewModel::class.java]
         return waitingRoomBinding.root
     }
 

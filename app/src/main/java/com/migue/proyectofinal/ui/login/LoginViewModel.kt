@@ -1,33 +1,38 @@
 package com.migue.proyectofinal.ui.login
 
-import android.content.Intent
-import android.widget.Toast
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.migue.proyectofinal.local.Player
-import com.migue.proyectofinal.repository.PlayerRepository
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class LoginViewModel : ViewModel() {
 
-    var emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
+    private var emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
     private val msg: MutableLiveData<String> = MutableLiveData()
     val msgDone: LiveData<String> =msg
-    private val playerRepository = PlayerRepository()
 
     private val dataValidate: MutableLiveData<Boolean> = MutableLiveData()
     val dataValidated: LiveData<Boolean> = dataValidate
+    private lateinit var auth: FirebaseAuth
 
     fun validateLogin(email: String, password: String) {
+        auth = Firebase.auth
         if (email.trim { it <= ' ' }.matches(emailPattern.toRegex())) {
             if (email.isNotEmpty()) {
                 if(password.isNotEmpty()) {
-                    val player : Player = findPlayer(email,password)
-                    if(player == null){
-                        msg.value = "Credenciales incorrectas"
-                    }else{
-                        dataValidate.value = true
-                    }
+                    auth.signInWithEmailAndPassword(email, password)
+                        .addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                Log.d("Login", "signInWithEmail:success")
+                                dataValidate.value = true
+                            } else {
+                                Log.w("Login", "signInWithEmail:failure", task.exception)
+                                msg.value = task.exception?.message.toString()
+                            }
+                        }
                 } else {
                     msg.value = "La contraseña no puede estar vacia"
                 }
@@ -38,10 +43,4 @@ class LoginViewModel : ViewModel() {
             msg.value = "Email invalido"
         }
     }
-
-    fun findPlayer(email: String, password: String) : Player{
-        return playerRepository.findPlayer(email,password)
-    }
-
-
 }

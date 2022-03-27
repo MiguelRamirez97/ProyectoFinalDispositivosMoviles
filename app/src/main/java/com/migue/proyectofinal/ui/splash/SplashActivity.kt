@@ -1,5 +1,6 @@
 package com.migue.proyectofinal.ui.splash
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,6 +9,7 @@ import com.migue.proyectofinal.ui.login.LoginActivity
 import java.util.*
 import kotlin.concurrent.timerTask
 
+@SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {
 
     private  lateinit var  splashBinding: ActivitySplashBinding

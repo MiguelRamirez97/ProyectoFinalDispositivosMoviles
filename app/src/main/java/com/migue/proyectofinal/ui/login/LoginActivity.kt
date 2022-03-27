@@ -13,14 +13,13 @@ class LoginActivity : AppCompatActivity() {
 
     private lateinit var loginBinding: ActivityLoginBinding
     private lateinit var loginViewModel: LoginViewModel
-    var emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         loginBinding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(loginBinding.root)
 
-        loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
+        loginViewModel = ViewModelProvider(this)[LoginViewModel::class.java]
 
         loginBinding.registerTextView.setOnClickListener {
             val intent = Intent(this, RegisterActivity::class.java)
@@ -29,13 +28,13 @@ class LoginActivity : AppCompatActivity() {
 
         with(loginBinding) {
 
-            loginViewModel.msgDone.observe(this@LoginActivity, { result ->
+            loginViewModel.msgDone.observe(this@LoginActivity) { result ->
                 onMsgDondeSubscribe(result)
-            })
+            }
 
-            loginViewModel.dataValidated.observe(this@LoginActivity, { result ->
-                onDataValidatedSubscribe(result)
-            })
+            loginViewModel.dataValidated.observe(this@LoginActivity) {
+                onDataValidatedSubscribe()
+            }
 
             singInButton.setOnClickListener {
                 loginViewModel.validateLogin(
@@ -46,7 +45,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun onDataValidatedSubscribe(result: Boolean) {
+    private fun onDataValidatedSubscribe() {
             val intent = Intent(this@LoginActivity, BottomActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(intent)

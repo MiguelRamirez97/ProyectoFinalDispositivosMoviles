@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.migue.proyectofinal.databinding.FragmentStartingGroupBinding
 
 class StartingGroupFragment : Fragment() {
@@ -20,7 +19,7 @@ class StartingGroupFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         startingGroupBinding = FragmentStartingGroupBinding.inflate(inflater, container,false)
-        stratingGroupViewModel = ViewModelProvider(this).get(StartingGroupViewModel::class.java)
+        stratingGroupViewModel = ViewModelProvider(this)[StartingGroupViewModel::class.java]
         return startingGroupBinding.root
     }
 

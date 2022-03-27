@@ -10,10 +10,6 @@ import com.migue.proyectofinal.R
 
 class OnlineGameFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = OnlineGameFragment()
-    }
-
     private lateinit var viewModel: OnlineGameViewModel
 
     override fun onCreateView(
@@ -23,10 +19,8 @@ class OnlineGameFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_online_game, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(OnlineGameViewModel::class.java)
-        // TODO: Use the ViewModel
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel = ViewModelProvider(this)[OnlineGameViewModel::class.java]
     }
-
 }
