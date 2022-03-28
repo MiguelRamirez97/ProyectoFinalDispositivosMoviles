@@ -2,6 +2,7 @@ package com.migue.proyectofinal.server.serverrepository
 
 import android.util.Log
 import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import com.migue.proyectofinal.server.Player
 
@@ -20,5 +21,20 @@ class PlayerServerRepository {
                     Log.w("Registro", "Error agregando el usuario", e)
                 }
         }
+    }
+
+    fun findPlayer(uid: String?) : Player?{
+        var playerFound : Player? = null
+        db.collection("players")
+            .get()
+            .addOnSuccessListener { result ->
+                for(document in result){
+                    var playerServer : Player = document.toObject<Player>()
+                    if(playerServer?.uid.equals(uid)){
+                        playerFound = playerServer
+                    }
+                }
+            }
+        return playerFound
     }
 }

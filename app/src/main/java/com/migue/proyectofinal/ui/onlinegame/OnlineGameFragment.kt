@@ -6,21 +6,30 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.navArgs
 import com.migue.proyectofinal.R
+import com.migue.proyectofinal.databinding.FragmentOnlineGameBinding
 
 class OnlineGameFragment : Fragment() {
 
-    private lateinit var viewModel: OnlineGameViewModel
+    private lateinit var onlineGameBinding: FragmentOnlineGameBinding
+    private lateinit var onlineGameViewModel: OnlineGameViewModel
+    private val args: OnlineGameFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_online_game, container, false)
+        onlineGameBinding = FragmentOnlineGameBinding.inflate(inflater, container, false)
+        onlineGameViewModel = ViewModelProvider(this).get(OnlineGameViewModel::class.java)
+        return onlineGameBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(this)[OnlineGameViewModel::class.java]
+
+        with(onlineGameBinding){
+            buttonOnlineGame.text = "golpea a: "+args.game.namePlayer1
+        }
     }
 }
