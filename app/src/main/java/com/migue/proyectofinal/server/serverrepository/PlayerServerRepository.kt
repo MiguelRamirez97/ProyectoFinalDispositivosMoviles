@@ -1,15 +1,23 @@
 package com.migue.proyectofinal.server.serverrepository
 
 import android.util.Log
+import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.migue.proyectofinal.server.Player
+import com.migue.proyectofinal.server.PlayerServer
+import com.google.firebase.firestore.ktx.toObject
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 
 class PlayerServerRepository {
+    private lateinit var auth: FirebaseAuth
     val db = Firebase.firestore
-    fun savePlayerInServer(uid: String?, email: String, namePlayer: String){
-        val player = Player(uid, namePlayer, email)
-        uid?.let {uid ->
+    fun savePlayerInServer(uid: String?, email: String, namePlayer: String) {
+        val player = PlayerServer(uid, namePlayer, email)
+        uid?.let { uid ->
             db.collection("players")
                 .document(uid)
                 .set(player)
@@ -19,6 +27,17 @@ class PlayerServerRepository {
                 .addOnFailureListener { e ->
                     Log.w("Registro", "Error agregando el usuario", e)
                 }
+        }
+    }
+
+    suspend fun findPlayerInServer(uid: String?): QuerySnapshot? {
+        return withContext(Dispatchers.IO) {
+            uid?.let { uid ->
+                db.collection("players")
+                    .whereEqualTo("uid", uid)
+                    .get()
+                    .await()
+            }
         }
     }
 }

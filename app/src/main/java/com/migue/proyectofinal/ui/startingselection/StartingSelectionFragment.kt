@@ -44,6 +44,7 @@ class StartingSelectionFragment : Fragment() {
             }
 
             quickGameButton.setOnClickListener {
+                startingSelectionViewModel.playGame()
                 findNavController().navigate(
                     StartingSelectionFragmentDirections.actionStartingSelectionFragmentToOnlineGameFragment()
                 )

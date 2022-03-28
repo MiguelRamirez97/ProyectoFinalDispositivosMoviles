@@ -1,11 +1,7 @@
 package com.migue.proyectofinal.local.localrepository
 
-import android.util.Log
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
 import com.migue.proyectofinal.ProyectoFinal
 import com.migue.proyectofinal.local.PlayerDao
-import com.migue.proyectofinal.server.Player
 
 import java.sql.Types.NULL
 
