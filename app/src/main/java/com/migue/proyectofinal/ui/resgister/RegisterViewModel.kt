@@ -7,6 +7,10 @@ import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.migue.proyectofinal.server.serverrepository.PlayerServerRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class RegisterViewModel : ViewModel() {
 
@@ -15,6 +19,7 @@ class RegisterViewModel : ViewModel() {
     val msgDone: LiveData<String> =msg
 
     private val dataValidate: MutableLiveData<Boolean> = MutableLiveData()
+    private val playerRepository = PlayerServerRepository()
     val dataValidated: LiveData<Boolean> = dataValidate
     private lateinit var auth: FirebaseAuth
 
@@ -28,6 +33,7 @@ class RegisterViewModel : ViewModel() {
                             .addOnCompleteListener { task ->
                                 if (task.isSuccessful) {
                                     Log.d("Register", "createUserWithEmail:success")
+                                    createPlayer(auth.currentUser?.uid, email, namePlayer)
                                     dataValidate.value = true
                                 } else {
                                     Log.w("Register", "createUserWithEmail:failure", task.exception)
@@ -42,5 +48,11 @@ class RegisterViewModel : ViewModel() {
                 msg.value = "Email invalido"
         }else
             msg.value = "Debe llenar todos los campos"
+    }
+
+    private fun createPlayer(uid: String?, email: String, namePlayer: String) {
+        GlobalScope.launch(Dispatchers.IO) {
+            playerRepository.savePlayerInServer(uid, email, namePlayer)
+        }
     }
 }
