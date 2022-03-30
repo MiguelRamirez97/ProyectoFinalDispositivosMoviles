@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.migue.proyectofinal.databinding.FragmentWaitingRoomBinding
 
@@ -28,7 +29,8 @@ class WaitingRoomFragment : Fragment() {
 
         with(waitingRoomBinding){
             buttonPlayGame.setOnClickListener {
-                findNavController().navigate(WaitingRoomFragmentDirections.actionWaitingRoomFragmentToOnlineGameFragment2())
+                Toast.makeText(requireContext(),"Esta opción aún se encuentra en desarrollo", Toast.LENGTH_SHORT).show()
+                //findNavController().navigate(WaitingRoomFragmentDirections.actionWaitingRoomFragmentToOnlineGameFragment2())
             }
         }
     }

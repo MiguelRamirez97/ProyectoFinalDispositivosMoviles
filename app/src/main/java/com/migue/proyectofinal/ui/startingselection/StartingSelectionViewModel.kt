@@ -36,6 +36,7 @@ class StartingSelectionViewModel : ViewModel() {
                 updateGame(gameServer,playerServer)
             }else{
                 createGame(playerServer)
+                msg.postValue("¡¡Se ha creado una partida, espera unos momentos a que otro jugador sé una a ella!!")
             }
         }
     }

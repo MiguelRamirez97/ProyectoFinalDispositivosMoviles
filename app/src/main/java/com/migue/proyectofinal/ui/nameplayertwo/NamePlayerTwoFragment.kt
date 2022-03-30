@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.migue.proyectofinal.databinding.FragmentNamePlayerTwoBinding
 
@@ -27,8 +28,18 @@ class NamePlayerTwoFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         with(namePlayerTwoBinding){
+
+//            namePlayerTwoViewModel.dataValidated.observe(viewLifecycleOwner){result ->
+//                if(result != null){
+//                    findNavController().navigate(NamePlayerTwoFragmentDirections.actionNamePlayerTwoFragmentToLocalGameFragment(result))
+//            }}
+
+            namePlayerTwoViewModel.msgDone.observe(viewLifecycleOwner){result ->
+                Toast.makeText(requireContext(),result,Toast.LENGTH_SHORT).show()
+            }
+
             acceptButton.setOnClickListener {
-                findNavController().navigate(NamePlayerTwoFragmentDirections.actionNamePlayerTwoFragmentToLocalGameFragment())
+                namePlayerTwoViewModel.dataPlayer2(playerTwoTextInputEditText.text.toString())
             }
         }
     }
