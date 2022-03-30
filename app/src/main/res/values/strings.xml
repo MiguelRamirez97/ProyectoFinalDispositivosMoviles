@@ -37,4 +37,6 @@
     <string name="text_view_name">Nombre:</string>
     <string name="text_view_email">Email:</string>
     <string name="recoveryPassword"><u><b>Olvide mi contraseña</b></u></string>
+    <string name="female_radio_button">Femenino</string>
+    <string name="male_radio_button">Masculino</string>
 </resources>

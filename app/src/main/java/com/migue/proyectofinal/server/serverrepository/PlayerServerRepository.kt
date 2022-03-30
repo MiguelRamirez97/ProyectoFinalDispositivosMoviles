@@ -11,8 +11,8 @@ import kotlinx.coroutines.withContext
 
 class PlayerServerRepository {
     val db = Firebase.firestore
-    fun savePlayerInServer(uid: String?, email: String, namePlayer: String) {
-        val player = PlayerServer(uid, namePlayer, email)
+    fun savePlayerInServer(uid: String?, email: String, namePlayer: String, urlPicture: String) {
+        val player = PlayerServer(uid, namePlayer, email, urlPicture)
         uid?.let { uid ->
             db.collection("players")
                 .document(uid)
