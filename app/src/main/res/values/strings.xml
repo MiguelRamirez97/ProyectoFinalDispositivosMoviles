@@ -24,7 +24,7 @@
     <string name="title_play">Jugar</string>
     <string name="title_score">Puntajes</string>
     <string name="title_profile">Perfil</string>
-    <string name="text_view_score">Puntuación</string>
+    <string name="text_view_score">Puntuación: </string>
     <string name="button_online_game">Golpea a: </string>
     <string name="title_records">Records</string>
     <string name="button_play_game">Jugar</string>

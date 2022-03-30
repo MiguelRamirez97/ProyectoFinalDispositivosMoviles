@@ -10,7 +10,6 @@ import android.widget.Toast
 import androidx.navigation.fragment.navArgs
 import com.migue.proyectofinal.databinding.FragmentStartingSelectionBinding
 import androidx.navigation.fragment.findNavController
-import com.migue.proyectofinal.server.Player
 
 class StartingSelectionFragment : Fragment() {
 

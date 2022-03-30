@@ -62,8 +62,8 @@
         android:label="@string/quick_game_text_button"
         tools:layout="@layout/fragment_online_game" >
         <argument
-            android:name="Game"
-            app:argType="com.migue.proyectofinal.server.Game" />
+            android:name="GameServer"
+            app:argType="com.migue.proyectofinal.server.GameServer" />
     </fragment>
     <fragment
         android:id="@+id/onlineGameFragment2"
