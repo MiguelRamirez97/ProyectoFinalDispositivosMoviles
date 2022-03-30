@@ -8,35 +8,38 @@
 
     <ImageView
         android:id="@+id/image__profile"
-        android:layout_width="405dp"
-        android:layout_height="193dp"
+        android:layout_width="700dp"
+        android:layout_height="500dp"
         android:layout_marginStart="1dp"
         android:layout_marginTop="21dp"
         android:layout_marginEnd="1dp"
+        android:contentDescription="@null"
         android:src="@drawable/user_person_avatar_unisex_512"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="@null" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/text_view_name"
+        style="@style/TextViewTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:layout_marginEnd="300dp"
         android:text="@string/text_view_name"
+        android:textColor="?attr/colorOnSecondary"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/image__profile" />
 
     <TextView
         android:id="@+id/text_view_email"
+        style="@style/TextViewTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="26dp"
-        android:layout_marginEnd="300dp"
+        android:layout_marginTop="40dp"
         android:text="@string/text_view_email"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_view_name" />

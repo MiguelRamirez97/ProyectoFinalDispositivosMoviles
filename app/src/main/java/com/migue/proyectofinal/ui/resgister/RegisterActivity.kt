@@ -31,15 +31,29 @@ class RegisterActivity : AppCompatActivity() {
                 onDataValidatedSubscribe()
             }
 
+
+
             registerButton.setOnClickListener {
                 registerViewModel.validateFields(
                     emailEditText.text.toString(),
                     namePLayerEditText.text.toString(),
                     passwordEditText.text.toString(),
-                    repPasswordEditText.text.toString()
+                    repPasswordEditText.text.toString(),
+                    selectGenre()
                 )
             }
         }
+    }
+    private fun selectGenre(): Int{
+        var genre: Int
+        with(registerBinding) {
+             genre = when {
+                maleRadioButton.isChecked -> 1
+                femaleRadioButton.isChecked -> 0
+                 else -> 2
+             }
+        }
+        return genre
     }
 
     private fun onDataValidatedSubscribe() {

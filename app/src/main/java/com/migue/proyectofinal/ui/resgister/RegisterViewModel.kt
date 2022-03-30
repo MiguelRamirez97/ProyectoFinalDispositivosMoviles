@@ -7,6 +7,10 @@ import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.migue.proyectofinal.server.serverrepository.PlayerServerRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class RegisterViewModel : ViewModel() {
 
@@ -15,10 +19,13 @@ class RegisterViewModel : ViewModel() {
     val msgDone: LiveData<String> =msg
 
     private val dataValidate: MutableLiveData<Boolean> = MutableLiveData()
+    private val playerRepository = PlayerServerRepository()
     val dataValidated: LiveData<Boolean> = dataValidate
     private lateinit var auth: FirebaseAuth
+    private val imageFemale = "https://firebasestorage.googleapis.com/v0/b/taptaptap-8eb3e.appspot.com/o/genre%2Ffemale.png?alt=media&token=d1e13473-3eba-4109-9562-fe68b045da6c"
+    private val imageMale = "https://firebasestorage.googleapis.com/v0/b/taptaptap-8eb3e.appspot.com/o/genre%2Fmale.png?alt=media&token=9fd54543-01ca-4c2c-aa88-7f4ba34f376d"
 
-    fun validateFields(email: String, namePlayer: String, password: String, repPassword: String) {
+    fun validateFields(email: String, namePlayer: String, password: String, repPassword: String, genre: Int) {
         auth = Firebase.auth
         if(email.isNotEmpty() && namePlayer.isNotEmpty() && password.isNotEmpty() && repPassword.isNotEmpty()){
             if (email.trim { it <= ' ' }.matches(emailPattern.toRegex())) {
@@ -28,6 +35,7 @@ class RegisterViewModel : ViewModel() {
                             .addOnCompleteListener { task ->
                                 if (task.isSuccessful) {
                                     Log.d("Register", "createUserWithEmail:success")
+                                    createPlayer(auth.currentUser?.uid, email, namePlayer, genre)
                                     dataValidate.value = true
                                 } else {
                                     Log.w("Register", "createUserWithEmail:failure", task.exception)
@@ -42,5 +50,17 @@ class RegisterViewModel : ViewModel() {
                 msg.value = "Email invalido"
         }else
             msg.value = "Debe llenar todos los campos"
+    }
+
+    private fun createPlayer(uid: String?, email: String, namePlayer: String, genre: Int) {
+        GlobalScope.launch(Dispatchers.IO) {
+            var urlPicture : String = ""
+            if(genre == 0){
+                urlPicture = imageFemale
+            }else if(genre == 1){
+                urlPicture = imageMale
+            }
+            playerRepository.savePlayerInServer(uid, email, namePlayer, urlPicture)
+        }
     }
 }

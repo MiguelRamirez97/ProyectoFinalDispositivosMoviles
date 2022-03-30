@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.fragment.navArgs
 import com.migue.proyectofinal.databinding.FragmentStartingSelectionBinding
 import androidx.navigation.fragment.findNavController
@@ -31,6 +32,18 @@ class StartingSelectionFragment : Fragment() {
 
         with(startingSelectionBinding) {
 
+            startingSelectionViewModel.msgDone.observe(viewLifecycleOwner) { result ->
+                onMsgDoneSubscribe(result)
+            }
+
+            startingSelectionViewModel.searchGameFromServerDone.observe(viewLifecycleOwner) {result ->
+                if(result != null){
+                    findNavController().navigate(
+                        StartingSelectionFragmentDirections.actionStartingSelectionFragmentToOnlineGameFragment(result)
+                    )
+                }
+            }
+
             groupGameButton.setOnClickListener {
                 findNavController().navigate(
                     StartingSelectionFragmentDirections.actionStartingSelectionFragmentToStartingGroupFragment()
@@ -44,10 +57,14 @@ class StartingSelectionFragment : Fragment() {
             }
 
             quickGameButton.setOnClickListener {
-                findNavController().navigate(
-                    StartingSelectionFragmentDirections.actionStartingSelectionFragmentToOnlineGameFragment()
-                )
+                startingSelectionViewModel.playGame()
             }
         }
     }
+
+    private fun onMsgDoneSubscribe(msg: String) {
+        Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
+    }
+
+
 }
