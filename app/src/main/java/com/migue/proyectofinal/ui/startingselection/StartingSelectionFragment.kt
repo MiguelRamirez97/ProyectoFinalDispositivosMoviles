@@ -15,7 +15,6 @@ class StartingSelectionFragment : Fragment() {
 
     private lateinit var startingSelectionViewModel: StartingSelectionViewModel
     private lateinit var startingSelectionBinding: FragmentStartingSelectionBinding
-    private val args: StartingSelectionFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -63,7 +62,7 @@ class StartingSelectionFragment : Fragment() {
     }
 
     private fun onMsgDoneSubscribe(msg: String) {
-        Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
+        Toast.makeText(requireContext(), msg, Toast.LENGTH_LONG).show()
     }
 
 

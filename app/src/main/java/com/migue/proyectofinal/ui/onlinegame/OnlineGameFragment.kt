@@ -1,17 +1,18 @@
 package com.migue.proyectofinal.ui.onlinegame
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.migue.proyectofinal.R
 import com.migue.proyectofinal.databinding.FragmentOnlineGameBinding
 
-class OnlineGameFragment : Fragment() {
+class OnlineGameFragment : Fragment(){
 
     private var contador = 0
     private lateinit var onlineGameBinding: FragmentOnlineGameBinding
@@ -54,6 +55,18 @@ class OnlineGameFragment : Fragment() {
             }else{
                 imageViewGameOnline.setImageResource(R.drawable.batman_robin_girada)
             }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        requireView().isFocusableInTouchMode = true
+        requireView().requestFocus()
+        requireView().setOnKeyListener { v, keyCode, event ->
+            if (event.action === KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
+                findNavController().navigate(OnlineGameFragmentDirections.actionOnlineGameFragmentToStartingSelectionFragment())
+                true
+            } else false
         }
     }
 
