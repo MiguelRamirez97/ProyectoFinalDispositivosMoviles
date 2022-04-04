@@ -56,7 +56,11 @@
         android:id="@+id/scoresFragment"
         android:name="com.migue.proyectofinal.ui.scores.ScoresFragment"
         android:label="@string/title_score"
-        tools:layout="@layout/fragment_scores" />
+        tools:layout="@layout/fragment_scores" >
+        <action
+            android:id="@+id/action_scoresFragment_to_startingSelectionFragment"
+            app:destination="@id/startingSelectionFragment" />
+    </fragment>
     <fragment
         android:id="@+id/onlineGameFragment"
         android:name="com.migue.proyectofinal.ui.onlinegame.OnlineGameFragment"

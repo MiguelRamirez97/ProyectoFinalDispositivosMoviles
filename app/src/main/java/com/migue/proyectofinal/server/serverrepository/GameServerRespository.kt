@@ -53,9 +53,19 @@ class GameServerRespository {
         }
     }
 
-    suspend fun getGames(): QuerySnapshot {
+    suspend fun getGamesUidPlayerOne(uid: String): QuerySnapshot? {
         return withContext(Dispatchers.IO){
             db.collection("games")
+                .whereEqualTo("uidPlayer1",uid)
+                .get()
+                .await()
+        }
+    }
+
+    suspend fun getGamesUidPlayerTwo(uid: String): QuerySnapshot? {
+        return withContext(Dispatchers.IO){
+            db.collection("games")
+                .whereEqualTo("uidPlayer1",uid)
                 .get()
                 .await()
         }
