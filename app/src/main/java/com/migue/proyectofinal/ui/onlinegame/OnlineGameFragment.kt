@@ -22,9 +22,9 @@ class OnlineGameFragment : Fragment(){
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         onlineGameBinding = FragmentOnlineGameBinding.inflate(inflater, container, false)
-        onlineGameViewModel = ViewModelProvider(this).get(OnlineGameViewModel::class.java)
+        onlineGameViewModel = ViewModelProvider(this)[OnlineGameViewModel::class.java]
         return onlineGameBinding.root
     }
 
@@ -32,11 +32,20 @@ class OnlineGameFragment : Fragment(){
         super.onViewCreated(view, savedInstanceState)
 
         with(onlineGameBinding){
-            buttonOnlineGame.text = "golpea a: "+args.gameServer.namePlayer1
-            textViewCounter.text = "Puntuación: "+contador
+//            onlineGameViewModel.cargarDatos()
+//
+//            onlineGameViewModel.searchPlayerFromServerDone.observe(viewLifecycleOwner, {result ->
+//                if(result?.name == args.gameServer.namePlayer1){
+//                    ("golpea a: "+args.gameServer.namePlayer2).also { buttonOnlineGame.text = it }
+//                }else{
+//                    ("golpea a: "+args.gameServer.namePlayer1).also { buttonOnlineGame.text = it }
+//                }
+//            })
+            ("golpea a: "+args.gameServer.namePlayer1).also { buttonOnlineGame.text = it }
+            ("Puntuación: $contador").also { textViewCounter.text = it }
 
             buttonOnlineGame.setOnClickListener{
-                onlineGameViewModel.animacionBoton(contador)
+                onlineGameViewModel.animationButton(contador)
             }
 
             onlineGameViewModel.counterDone.observe(viewLifecycleOwner){result ->
@@ -49,7 +58,7 @@ class OnlineGameFragment : Fragment(){
     private fun onCounterDoneSubscribe(result: Int) {
         with(onlineGameBinding){
             contador = result
-            textViewCounter.text = "Puntuación: "+result
+            ("Puntuación: $result").also { textViewCounter.text = it }
             if(contador%2 ==0){
                 imageViewGameOnline.setImageResource(R.drawable.batman_robin_cachetada_alta_web_590x340)
             }else{
@@ -62,12 +71,11 @@ class OnlineGameFragment : Fragment(){
         super.onResume()
         requireView().isFocusableInTouchMode = true
         requireView().requestFocus()
-        requireView().setOnKeyListener { v, keyCode, event ->
-            if (event.action === KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
+        requireView().setOnKeyListener { _, keyCode, event ->
+            if (event.action == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
                 findNavController().navigate(OnlineGameFragmentDirections.actionOnlineGameFragmentToStartingSelectionFragment())
                 true
             } else false
         }
     }
-
 }

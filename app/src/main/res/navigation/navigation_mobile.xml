@@ -37,6 +37,12 @@
         <action
             android:id="@+id/action_namePlayerTwoFragment_to_localGameFragment"
             app:destination="@id/localGameFragment" />
+        <argument
+            android:name="player"
+            app:argType="com.migue.proyectofinal.server.PlayerServer" />
+        <action
+            android:id="@+id/action_namePlayerTwoFragment_to_startingSelectionFragment"
+            app:destination="@id/startingSelectionFragment" />
     </fragment>
     <fragment
         android:id="@+id/localGameFragment"
@@ -46,6 +52,12 @@
         <argument
             android:name="namePlayer2"
             app:argType="string" />
+        <argument
+            android:name="player1"
+            app:argType="com.migue.proyectofinal.server.PlayerServer" />
+        <action
+            android:id="@+id/action_localGameFragment_to_startingSelectionFragment"
+            app:destination="@id/startingSelectionFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
