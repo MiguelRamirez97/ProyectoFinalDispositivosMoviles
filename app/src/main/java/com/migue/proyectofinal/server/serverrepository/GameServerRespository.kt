@@ -1,8 +1,6 @@
 package com.migue.proyectofinal.server.serverrepository
 
 import android.util.Log
-import com.google.android.gms.tasks.Task
-import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -59,6 +57,24 @@ class GameServerRespository {
         return withContext(Dispatchers.IO) {
             db.collection("games")
                 .whereEqualTo("id", id)
+                .get()
+                .await()
+        }
+    }
+
+    suspend fun getGamesUidPlayerOne(uid: String): QuerySnapshot? {
+        return withContext(Dispatchers.IO){
+            db.collection("games")
+                .whereEqualTo("uidPlayer1",uid)
+                .get()
+                .await()
+        }
+    }
+
+    suspend fun getGamesUidPlayerTwo(uid: String): QuerySnapshot? {
+        return withContext(Dispatchers.IO){
+            db.collection("games")
+                .whereEqualTo("uidPlayer2",uid)
                 .get()
                 .await()
         }
