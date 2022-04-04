@@ -33,29 +33,6 @@ class StartingSelectionViewModel : ViewModel() {
     private val gameFoundFromServer: MutableLiveData<GameServer?> = MutableLiveData()
     val gameFoundFromServerDone: LiveData<GameServer?> = gameFoundFromServer
 
-    //    fun playQuickGame() {
-//        auth = Firebase.auth
-//        GlobalScope.launch(Dispatchers.IO) {
-//            var gameServer: GameServer? = findSyncGame()
-//            val playerServer: PlayerServer? = findPlayer()
-//            var gameServer2: GameServer? = null
-//            if (gameServer != null && gameServer.uidPlayer1 != auth.currentUser?.uid) {
-//                updateGame(gameServer, playerServer)
-//            } else {
-//                if (gameServer?.uidPlayer1 != auth.currentUser?.uid) {
-//                    gameServer2 = findSyncGame()
-//                    if (gameServer2 != null && gameServer2.uidPlayer1 == auth.currentUser?.uid) {
-//                        waitingGameFromServer.postValue(gameServer2)
-//                    }
-//                } else {
-//                    msg.postValue("Volveremos a buscar un oponente para tu partida.")
-//                    if(gameServer?.namePlayer2 != null){
-//                        waitingGameFromServer.postValue(gameServer)
-//                    }
-//                }
-//            }
-//        }
-//    }
     fun playQuickGame() {
         GlobalScope.launch(Dispatchers.IO) {
             val gameServer: GameServer? = findSyncGame()
@@ -71,23 +48,14 @@ class StartingSelectionViewModel : ViewModel() {
                 createGame(playerServer)
                 var gameCreated = findSyncGame()
                 msg.postValue("¡¡Se ha creado una partida, espera unos momentos a que otro jugador sé una a ella!!")
-                waitingGameFromServer.postValue(gameCreated)            }
+                waitingGameFromServer.postValue(gameCreated)
+            }
         }
     }
 
-
-//    private suspend fun findGameAgain(uid: String?): GameServer? {
-//        auth = Firebase.auth
-//        val gameServer = uid?.let { gameServerRespository.findGameAgain(it) }
-//        return if (gameServer?.isEmpty == false) {
-//            gameServer?.documents?.first()?.toObject<GameServer>()
-//        } else {
-//            null
-//        }
-//    }
-
     private suspend fun updateGame(gameServer: GameServer, playerServer: PlayerServer?) {
         gameServerRespository.updateGame(gameServer, playerServer)
+        Thread.sleep(5000)
         var gameFound = gameServer.id?.let { gameServerRespository.findGameById(it) }
         if (gameFound?.isEmpty == true) {
             foundGameFromServer.postValue(null)
@@ -126,31 +94,35 @@ class StartingSelectionViewModel : ViewModel() {
     }
 
     fun playLocalGame() {
-        auth = Firebase.auth
         GlobalScope.launch(Dispatchers.IO) {
             val playerServer: PlayerServer? = findPlayer()
             searchPlayerFromServer.postValue(playerServer)
         }
     }
 
-    suspend fun findCurrentGame(idGame: String) {
-        auth = Firebase.auth
-
-            val gameServer = findCurrentGameInServer(idGame)
+    fun findCurrentGame(idGame: String){
+        GlobalScope.launch(Dispatchers.IO) {
+            var gameServer: GameServer? = null
+            for (i in 0..2) {
+                Thread.sleep(4000)
+                gameServer = findCurrentGameInServer(idGame)
+                if(gameServer != null){
+                    break
+                }
+            }
             if (gameServer != null) {
                 gameFoundFromServer.postValue(gameServer)
+            } else {
+                msg.postValue("No se encontro partida, por favor intentelo de nuevo.")
             }
-
+        }
     }
 
     private suspend fun findCurrentGameInServer(idGame: String): GameServer? {
         var gameServer = gameServerRespository.findCurrentGame(idGame)
-        msg.postValue(gameServer?.documents?.first()?.toObject<GameServer>()?.uidPlayer1.toString()
-                + " separacion "
-        +msg.postValue(gameServer?.documents?.first()?.toObject<GameServer>()?.uidPlayer2.toString()))
         return if (gameServer?.isEmpty == false) {
-            if (gameServer.documents.first()
-                    .toObject<GameServer>()?.uidPlayer2 != null
+            if (!gameServer.documents.first()
+                    .toObject<GameServer>()?.uidPlayer2.equals(null)
             ) {
                 gameServer.documents?.first().toObject<GameServer>()
             } else {

@@ -110,13 +110,25 @@ class GameServerRespository {
             }
     }
 
-    suspend fun findGameAgain(uid : String): QuerySnapshot? {
-        return withContext(Dispatchers.IO) {
-            db.collection("games")
-                .whereEqualTo("uidPlayer1", uid)
-                .whereEqualTo("winner",null)
-                .get()
-                .await()
+    suspend fun updatefinishGame(gameServer: GameServer, uidPlayer:String, contador: Int) {
+        if(gameServer.uidPlayer1.equals(uidPlayer)){
+        db.collection("games")
+            .document(gameServer.id.toString()).update(
+                mapOf(
+                    "scorePlayer1" to contador)).await()
         }
+        else{
+            db.collection("games")
+                .document(gameServer.id.toString()).update(
+                    mapOf(
+                        "scorePlayer2" to contador)).await()
+        }
+    }
+
+    fun saveWinner(winner: String, idGame: String) {
+        db.collection("games")
+            .document(idGame).update(
+                mapOf(
+                    "winner" to winner))
     }
 }

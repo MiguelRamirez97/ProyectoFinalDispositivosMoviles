@@ -12,14 +12,13 @@ import com.migue.proyectofinal.databinding.FragmentStartingSelectionBinding
 import com.migue.proyectofinal.server.GameServer
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
 class StartingSelectionFragment : Fragment() {
 
     private lateinit var startingSelectionViewModel: StartingSelectionViewModel
     private lateinit var startingSelectionBinding: FragmentStartingSelectionBinding
-
-    var gameServerfind: GameServer? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,26 +50,19 @@ class StartingSelectionFragment : Fragment() {
                 }
             }
 
-//            startingSelectionViewModel.searchGameAgainFromServerDone.observe(viewLifecycleOwner) { result ->
-//                if (result != null) {
-//                    waitingGame(result)
-////                    findNavController().navigate(
-////                        StartingSelectionFragmentDirections.actionStartingSelectionFragmentToOnlineGameFragment(
-////                            result
-////                        )
-////                    )
-//                }
-//            }
-
             startingSelectionViewModel.waitingGameFromServerDone.observe(viewLifecycleOwner) { result ->
                 if (result != null) {
-                    waitingGame(result)
+                    startingSelectionViewModel.findCurrentGame(result.id.toString())
                 }
             }
 
             startingSelectionViewModel.gameFoundFromServerDone.observe(viewLifecycleOwner) { result ->
                 if (result != null) {
-                    gameServerfind = result
+                    findNavController().navigate(
+                        StartingSelectionFragmentDirections.actionStartingSelectionFragmentToOnlineGameFragment(
+                            result
+                        )
+                    )
                 }
             }
 
@@ -100,21 +92,6 @@ class StartingSelectionFragment : Fragment() {
         }
     }
 
-    private fun waitingGame(gameServer: GameServer) {
-        onMsgDoneSubscribe(gameServer.id.toString())
-        GlobalScope.launch(Dispatchers.IO) {
-            for (i in 0..2) {
-                onMsgDoneSubscribe("entro al for")
-                startingSelectionViewModel.findCurrentGame(gameServer?.id.toString())
-            }
-            Thread.sleep(15000)
-            if (gameServerfind != null) {
-                onMsgDoneSubscribe("Encontro")
-            } else {
-                onMsgDoneSubscribe("No encontro")
-            }
-        }
-    }
 
     private fun onMsgDoneSubscribe(msg: String) {
         Toast.makeText(requireContext(), msg, Toast.LENGTH_LONG).show()
