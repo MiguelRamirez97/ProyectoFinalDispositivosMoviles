@@ -1,7 +1,6 @@
 package com.migue.proyectofinal.ui.startingselection
 
 import android.os.Bundle
-import android.os.CountDownTimer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,9 +10,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.migue.proyectofinal.databinding.FragmentStartingSelectionBinding
 import com.migue.proyectofinal.server.GameServer
-import com.migue.proyectofinal.server.PlayerServer
-import com.migue.proyectofinal.ui.nameplayertwo.NamePlayerTwoFragmentDirections
-import java.util.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class StartingSelectionFragment : Fragment() {
 
@@ -42,7 +41,7 @@ class StartingSelectionFragment : Fragment() {
                 onMsgDoneSubscribe(result)
             }
 
-            startingSelectionViewModel.searchGameFromServerDone.observe(viewLifecycleOwner) { result ->
+            startingSelectionViewModel.foundGameFromServerDone.observe(viewLifecycleOwner) { result ->
                 if (result != null) {
                     findNavController().navigate(
                         StartingSelectionFragmentDirections.actionStartingSelectionFragmentToOnlineGameFragment(
@@ -52,15 +51,16 @@ class StartingSelectionFragment : Fragment() {
                 }
             }
 
-            startingSelectionViewModel.searchGameAgainFromServerDone.observe(viewLifecycleOwner) { result ->
-                if (result != null) {
-                    findNavController().navigate(
-                        StartingSelectionFragmentDirections.actionStartingSelectionFragmentToOnlineGameFragment(
-                            result
-                        )
-                    )
-                }
-            }
+//            startingSelectionViewModel.searchGameAgainFromServerDone.observe(viewLifecycleOwner) { result ->
+//                if (result != null) {
+//                    waitingGame(result)
+////                    findNavController().navigate(
+////                        StartingSelectionFragmentDirections.actionStartingSelectionFragmentToOnlineGameFragment(
+////                            result
+////                        )
+////                    )
+//                }
+//            }
 
             startingSelectionViewModel.waitingGameFromServerDone.observe(viewLifecycleOwner) { result ->
                 if (result != null) {
@@ -95,19 +95,25 @@ class StartingSelectionFragment : Fragment() {
             }
 
             quickGameButton.setOnClickListener {
-                //startingSelectionViewModel.playQuickGame()
+                startingSelectionViewModel.playQuickGame()
             }
         }
     }
 
     private fun waitingGame(gameServer: GameServer) {
-        //startingSelectionViewModel.findCurrentGame(gameServer.id.toString())
-//        gameServerfind = gameServer
-//        if (gameServer != null) {
-            onMsgDoneSubscribe("Encontro")
-//        } else {
-//            onMsgDoneSubscribe("No encontro")
-//        }
+        onMsgDoneSubscribe(gameServer.id.toString())
+        GlobalScope.launch(Dispatchers.IO) {
+            for (i in 0..2) {
+                onMsgDoneSubscribe("entro al for")
+                startingSelectionViewModel.findCurrentGame(gameServer?.id.toString())
+            }
+            Thread.sleep(15000)
+            if (gameServerfind != null) {
+                onMsgDoneSubscribe("Encontro")
+            } else {
+                onMsgDoneSubscribe("No encontro")
+            }
+        }
     }
 
     private fun onMsgDoneSubscribe(msg: String) {

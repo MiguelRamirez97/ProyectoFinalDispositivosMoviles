@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.toObject
-import com.google.firebase.firestore.ktx.toObjects
 import com.google.firebase.ktx.Firebase
 import com.migue.proyectofinal.server.serverrepository.PlayerServerRepository
 import kotlinx.coroutines.Dispatchers
@@ -25,10 +24,8 @@ class StartingSelectionViewModel : ViewModel() {
     private val msg: MutableLiveData<String> = MutableLiveData()
     val msgDone: LiveData<String> = msg
 
-    private val searchGameFromServer: MutableLiveData<GameServer?> = MutableLiveData()
-    val searchGameFromServerDone: LiveData<GameServer?> = searchGameFromServer
-    private val searchGameAgainFromServer: MutableLiveData<GameServer?> = MutableLiveData()
-    val searchGameAgainFromServerDone: LiveData<GameServer?> = searchGameAgainFromServer
+    private val foundGameFromServer: MutableLiveData<GameServer?> = MutableLiveData()
+    val foundGameFromServerDone: LiveData<GameServer?> = foundGameFromServer
     private val searchPlayerFromServer: MutableLiveData<PlayerServer?> = MutableLiveData()
     val searchPlayerFromServerDone: LiveData<PlayerServer?> = searchPlayerFromServer
     private val waitingGameFromServer: MutableLiveData<GameServer?> = MutableLiveData()
@@ -64,49 +61,42 @@ class StartingSelectionViewModel : ViewModel() {
             val gameServer: GameServer? = findSyncGame()
             val playerServer: PlayerServer? = findPlayer()
             if (gameServer != null) {
-                if(gameServer.uidPlayer1 != playerServer?.uid){
+                if (gameServer.uidPlayer1 != playerServer?.uid) {
                     updateGame(gameServer, playerServer)
-                }else{
+                } else {
                     msg.postValue("Volveremos a buscar un oponente para tu partida.")
+                    waitingGameFromServer.postValue(gameServer)
                 }
             } else {
-                var otraPartida = findGameAgain(auth.currentUser?.uid)
-                if( otraPartida == null){
-                    createGame(playerServer)
-                    msg.postValue("¡¡Se ha creado una partida, espera unos momentos a que otro jugador sé una a ella!!")
-                }else{
-                    if(otraPartida.namePlayer2 == null){
-                        searchGameAgainFromServer.postValue(otraPartida)
-                    }else{
-                        createGame(playerServer)
-                        msg.postValue("¡¡Se ha creado una partida, espera unos momentos a que otro jugador sé una a ella!!")
-                    }
-                }
-                }
+                createGame(playerServer)
+                var gameCreated = findSyncGame()
+                msg.postValue("¡¡Se ha creado una partida, espera unos momentos a que otro jugador sé una a ella!!")
+                waitingGameFromServer.postValue(gameCreated)            }
         }
     }
 
-    private suspend fun findGameAgain(uid: String?):GameServer? {
-        auth = Firebase.auth
-        val gameServer = uid?.let { gameServerRespository.findGameAgain(it) }
-        return if (gameServer?.isEmpty == false) {
-            gameServer?.documents?.first()?.toObject<GameServer>()
-        } else {
-            null
-        }
-    }
+
+//    private suspend fun findGameAgain(uid: String?): GameServer? {
+//        auth = Firebase.auth
+//        val gameServer = uid?.let { gameServerRespository.findGameAgain(it) }
+//        return if (gameServer?.isEmpty == false) {
+//            gameServer?.documents?.first()?.toObject<GameServer>()
+//        } else {
+//            null
+//        }
+//    }
 
     private suspend fun updateGame(gameServer: GameServer, playerServer: PlayerServer?) {
         gameServerRespository.updateGame(gameServer, playerServer)
         var gameFound = gameServer.id?.let { gameServerRespository.findGameById(it) }
         if (gameFound?.isEmpty == true) {
-            searchGameFromServer.postValue(null)
+            foundGameFromServer.postValue(null)
         } else {
             var gameFound1: GameServer? = gameFound?.first()?.toObject<GameServer>()
             if (gameFound1?.namePlayer2 != null) {
-                searchGameFromServer.postValue(gameFound?.first()?.toObject<GameServer>())
+                foundGameFromServer.postValue(gameFound?.first()?.toObject<GameServer>())
             } else {
-                searchGameFromServer.postValue(null)
+                foundGameFromServer.postValue(null)
             }
         }
     }
@@ -143,21 +133,24 @@ class StartingSelectionViewModel : ViewModel() {
         }
     }
 
-    fun findCurrentGame(idGame: String) {
+    suspend fun findCurrentGame(idGame: String) {
         auth = Firebase.auth
-        GlobalScope.launch(Dispatchers.IO) {
+
             val gameServer = findCurrentGameInServer(idGame)
             if (gameServer != null) {
                 gameFoundFromServer.postValue(gameServer)
             }
-        }
+
     }
 
     private suspend fun findCurrentGameInServer(idGame: String): GameServer? {
         var gameServer = gameServerRespository.findCurrentGame(idGame)
+        msg.postValue(gameServer?.documents?.first()?.toObject<GameServer>()?.uidPlayer1.toString()
+                + " separacion "
+        +msg.postValue(gameServer?.documents?.first()?.toObject<GameServer>()?.uidPlayer2.toString()))
         return if (gameServer?.isEmpty == false) {
             if (gameServer.documents.first()
-                    .toObject<GameServer>()?.uidPlayer1.toString() != auth.currentUser?.uid
+                    .toObject<GameServer>()?.uidPlayer2 != null
             ) {
                 gameServer.documents?.first().toObject<GameServer>()
             } else {
