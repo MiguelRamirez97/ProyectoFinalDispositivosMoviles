@@ -22,7 +22,7 @@
     <string name="player_two_name">Jugador 2</string>
     <string name="accept_button">Aceptar</string>
     <string name="title_play">Jugar</string>
-    <string name="title_score">Puntajes</string>
+    <string name="title_score">Historial</string>
     <string name="title_profile">Perfil</string>
     <string name="text_view_score">Puntuación: </string>
     <string name="button_online_game">Golpea a: </string>
