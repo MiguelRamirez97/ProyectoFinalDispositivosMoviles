@@ -39,4 +39,9 @@
     <string name="recoveryPassword"><u><b>Olvide mi contraseña</b></u></string>
     <string name="female_radio_button">Femenino</string>
     <string name="male_radio_button">Masculino</string>
+    <string name="game_id">Id Partida:</string>
+    <string name="name_player_one">NombreJugador1:</string>
+    <string name="name_player_two">NombreJugador2:</string>
+    <string name="winner">Ganador:</string>
+    <string name="score">Puntaje:</string>
 </resources>

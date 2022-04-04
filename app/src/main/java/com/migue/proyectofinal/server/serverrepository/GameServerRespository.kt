@@ -52,4 +52,12 @@ class GameServerRespository {
                 .await()
         }
     }
+
+    suspend fun getGames(): QuerySnapshot {
+        return withContext(Dispatchers.IO){
+            db.collection("games")
+                .get()
+                .await()
+        }
+    }
 }
